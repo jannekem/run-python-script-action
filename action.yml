@@ -1,4 +1,4 @@
-name: "Ruk Python Script"
+name: "Run Python Script"
 description: "Run a custom python snippet inside a workflow file"
 inputs:
   script:
