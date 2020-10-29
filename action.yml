@@ -1,0 +1,12 @@
+name: "Ruk Python Script"
+description: "Run a custom python snippet inside a workflow file"
+inputs:
+  script:
+    description: "Python script"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  color: "purple"
+  icon: "play"
