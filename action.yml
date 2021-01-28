@@ -4,6 +4,17 @@ inputs:
   script:
     description: "Python script"
     required: true
+  fail-on-error:
+    description: "Fail step if the return code from running the script is non-zero"
+    required: false
+    default: true
+outputs:
+  stdout:
+    description: "Program stdout"
+  stderr:
+    description: "Program stderr"
+  error:
+    description: "A string of 'true' or 'false' that tells if there were errors, use in conjunction with the fail-on-error input"
 runs:
   using: "node12"
   main: "dist/index.js"
