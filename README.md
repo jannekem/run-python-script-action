@@ -2,7 +2,7 @@
 
 Write Python scripts in an Actions workflow file!
 
-This action lets you define a custom Python script inside the workflow yaml file. It takes only one argument, `script`, which must contain the Python code that you want to run. You can use the YAML multiline string feature to define multiline scripts.
+This action lets you define a custom Python script inside the workflow YAML file. Write your Python code as the `script` argument, and use the YAML multiline string feature to define multiline scripts.
 
 The only requirement is that you set up the Python environment before running the action. Here is an example workflow that prints the repository root directory contents to the Actions logs:
 
