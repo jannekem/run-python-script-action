@@ -8,6 +8,10 @@ inputs:
     description: "Fail step if the return code from running the script is non-zero"
     required: false
     default: true
+  util:
+    description: "Include utility functions"
+    required: false
+    default: true
 outputs:
   stdout:
     description: "Program stdout"
