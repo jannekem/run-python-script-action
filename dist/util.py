@@ -11,7 +11,8 @@ def get_input(name):
 
 
 def set_output(name, value):
-    print(f"::set-output name={name}::{_escape_data(value)}")
+    with open(os.getenv("GITHUB_OUTPUT"), "a") as env:
+        print(f"{name}={_escape_data(value)}", file=env)
 
 
 def set_env(name, value):
@@ -56,7 +57,8 @@ def get_state(name):
 
 
 def save_state(name, value):
-    print(f"::save-state name={name}::{_escape_data(value)}")
+    with open(os.getenv("GITHUB_STATE"), "a") as env:
+        print(f"{name}={_escape_data(value)}", file=env)
 
 
 def _escape_data(value: str):
