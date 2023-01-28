@@ -20,6 +20,11 @@ def set_env(name, value):
         print(f"{name}={_escape_data(value)}", file=env)
 
 
+def set_summary(value):
+    with open(os.getenv("GITHUB_STEP_SUMMARY"), "a") as env:
+        print(value, file=env)
+
+
 def debug(message):
     print(f"::debug::{_escape_data(message)}")
 
