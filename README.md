@@ -118,6 +118,12 @@ Sets an output parameter.
 
 Sets an environment variable for use in later steps.
 
+### Set summary
+
+**Signature**: `def set_summary(value)`
+
+Sets an environment variable to display as job summary.
+
 ### Debug
 
 **Signature**: `debug(message)`
