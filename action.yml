@@ -1,4 +1,4 @@
-name: "Run Python Script"
+name: "Python Script Runner"
 description: "Run a custom python snippet inside a workflow file"
 inputs:
   script:
