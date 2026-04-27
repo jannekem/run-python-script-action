@@ -1,0 +1,63 @@
+name: Smoke test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Run basic script
+        id: basic
+        uses: ./
+        with:
+          util: false
+          script: |
+            print("smoke-ok")
+
+      - name: Verify basic script outputs
+        run: |
+          test "${{ steps.basic.outputs.error }}" = "false"
+          test "${{ steps.basic.outputs.stderr }}" = ""
+          grep -F "smoke-ok" <<< '${{ steps.basic.outputs.stdout }}'
+
+      - name: Run script with utility functions
+        id: utility
+        uses: ./
+        with:
+          util: true
+          script: |
+            set_output("utility_result", "utility-ok")
+            print("utility-stdout")
+
+      - name: Verify utility script outputs
+        run: |
+          test "${{ steps.utility.outputs.error }}" = "false"
+          grep -F "utility-ok" <<< '${{ steps.utility.outputs.utility_result }}'
+          grep -F "utility-stdout" <<< '${{ steps.utility.outputs.stdout }}'
+
+      - name: Run non-fatal failing script
+        id: failure
+        uses: ./
+        with:
+          fail-on-error: false
+          util: false
+          script: |
+            import sys
+            print("failure-stdout")
+            print("failure-stderr", file=sys.stderr)
+            sys.exit(7)
+
+      - name: Verify non-fatal failure outputs
+        run: |
+          test "${{ steps.failure.outputs.error }}" = "true"
+          grep -F "failure-stdout" <<< '${{ steps.failure.outputs.stdout }}'
+          grep -F "failure-stderr" <<< '${{ steps.failure.outputs.stderr }}'
