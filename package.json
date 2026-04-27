@@ -2,10 +2,11 @@
   "name": "run-python-srcipt-action",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build index.js -o dist --source-map"
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "npm run clean && ncc build index.mjs -o dist --source-map && node -e \"require('fs').copyFileSync('util.py', 'dist/util.py')\""
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,11 @@
   },
   "homepage": "https://github.com/jannekem/run-python-srcipt-action#readme",
   "dependencies": {
-    "@actions/core": "^1.10.1",
-    "@actions/exec": "^1.1.1",
-    "tmp": "^0.2.1"
+    "@actions/core": "^3.0.1",
+    "@actions/exec": "^3.0.0",
+    "tmp": "^0.2.5"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.1"
+    "@vercel/ncc": "^0.38.4"
   }
 }

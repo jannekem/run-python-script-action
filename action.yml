@@ -20,8 +20,8 @@ outputs:
   error:
     description: "A string of 'true' or 'false' that tells if there were errors, use in conjunction with the fail-on-error input"
 runs:
-  using: "node20"
-  main: "dist/index.js"
+  using: "node24"
+  main: "dist/index.mjs"
 branding:
   color: "purple"
   icon: "play"
